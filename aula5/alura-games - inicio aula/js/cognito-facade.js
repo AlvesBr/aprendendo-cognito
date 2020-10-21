@@ -84,7 +84,27 @@ function efetuarLoginCognito(userName, password, callback) {
 }
 
 function efetuarLogoutCognito(callback) {
-    console.log('efetuando logout')
+    console.log('antes lougout')
+    if (userPool).getCurrentUser()) {
+        userPool.getCurrentUser().getSession((err, result) => {
+            if (!err) {
+                console.log(result)
+            }
+        })
+    }
+
+    userPool.getCurrentUser().singOut()
+
+    console.log('depois lougout')
+
+    if (userPool).getCurrentUser()) {
+        userPool.getCurrentUser().getSession((err, result) => {
+            if (!err) {
+                console.log(result)
+            }
+        })
+    }
+
 }
 
 function apagarUsuarioCognito(callback) {
@@ -92,15 +112,24 @@ function apagarUsuarioCognito(callback) {
 }
 
 function trocarSenhaCognito(oldPassword, newPassword, callback) {
-    console.log('trocando senha')
+    if(cognitoUser){
+        cognitoUser.changePassword(oldPassword, newPassword, callback)
+        return
+    }
+
+    callback({ name: "Erro", message: "Usuario nao logado"}, null)
+
 }
 
 function esqueciSenhaCognito(userName, callback) {
-    console.log('esqueci senha')
+    getUser(userName).forgotPassword(tratarCallback(callback))
 }
 
 function confirmarEsqueciSenha(userName, code, newPassword, callback) {
-    console.log('confirmar esqueci senha')
+    getUser(userName).confirmPassword(
+        code, 
+        newPassword, 
+        tratarCallback(callback))
 }
 
 function consultarDadosUsuario(updateCallback) {

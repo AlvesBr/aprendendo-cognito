@@ -103,8 +103,26 @@ function confirmarEsqueciSenha(userName, code, newPassword, callback) {
     console.log('confirmar esqueci senha')
 }
 
-function consultarDadosUsuario(updateCallback) {
-    console.log('consultar dados usuário')
+function consultarDadosUsuario(Callback) {
+    if(cognitoUser){
+        cognitoUser.getUserAttributes((err, result)=>{
+
+            if (err) {
+                Callback({})
+                return
+            } else {
+                let userInfo = {name: cognitoUser.username }
+                for (let k = 0; k < result.lenght; k++) {
+                    userInfo[result[k].getName()] = result[k]
+                    .getValue();
+                }
+
+                Callback(userInfo);
+            }
+            
+        })
+
+    }
 }
 
 function tratarCallback(callback) {

@@ -14,3 +14,17 @@ Services -> Cognito -> Manage user pools
 
 Importante: Para que um user tenha acesso a diferentes apps usando as mesmas credenciais precisamos configurar no Cognito a opção "App Clients" e adicionar um cliente para cada sistemas que fará uso do User Pool.
 
+
+Posso fazer confirmação de usuario por email ou por telefone.
+
+sdk - integração da aplicação com cognito
+https://github.com/aws-amplify/amplify-js
+
+
+Layout do email:
+é possivel customizar o layout dos emails enviados, através da opção
+
+
+
+site jwt.io usamos para consultar os tokens de autenticação.
+
