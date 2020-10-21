@@ -1,0 +1,16 @@
+COGNITO
+Ferramenta utilizada para cadastro, autenticação de usuarios e aplicações.
+
+
+Não disponivel ainda para SP. 
+P/ + infos: https://aws.amazon.com/pt/about-aws/global-infrastructure/
+
+
+
+ACESSO:
+Services -> Cognito -> Manage user pools
+
+
+
+Importante: Para que um user tenha acesso a diferentes apps usando as mesmas credenciais precisamos configurar no Cognito a opção "App Clients" e adicionar um cliente para cada sistemas que fará uso do User Pool.
+
